@@ -11,6 +11,7 @@ import {
     TextField
 } from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
+import {Link} from "react-router-dom";
 
 const Login = () => {
     const [showPassword, setShowPassword] = React.useState(false);
@@ -74,9 +75,15 @@ const Login = () => {
                     />
                 </FormControl>
                 <Button sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Log In</Button>
-                <Button sx={{backgroundColor: '#212121', width: '25ch', textTransform: 'none', }} variant="contained">Create New Account</Button>
+                <Divider sx={{ width: '100%', marginY: 2 }} />
+                <Link to={'/register'}>
+                    <Button sx={{backgroundColor: '#009688', width: '25ch', textTransform: 'none', }} variant="contained">Create New Account</Button>
+                </Link>
 
-                <h6>Forgot Password?</h6>
+                    <Link to={'/forgot-password'}>
+                        <h6>Forgot Password?</h6>
+                    </Link>
+
             </Box>
         </Box>
     );
