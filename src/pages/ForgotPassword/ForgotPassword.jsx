@@ -51,12 +51,12 @@ const ForgotPassword = () => {
             >
                 <h1>ZenStyle Salon Administrator</h1>
                 <Box>
-                    <h1>Forgot Password</h1>
-                    <h4 style={{fontSize: 25}}>Don't Worry !</h4>
-                    <h4 style={{fontSize: 15, fontWeight: "400"}}>
+                    <h2>Forgot Password</h2>
+                    <h4>Don't Worry !</h4>
+                    <h5 style={{ fontWeight: "400"}}>
                         Enter Your Registered Mobile Number {"\n"}and we will send you a
                         verification code.
-                    </h4>
+                    </h5>
                 </Box>
 
                 <TextField
