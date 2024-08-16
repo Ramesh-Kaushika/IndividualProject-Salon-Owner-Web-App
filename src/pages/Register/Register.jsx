@@ -29,7 +29,7 @@ const Register = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh', // Fullscreen height
-                backgroundImage: 'url("src/assets/pngwing.com.png")', // Background image
+                backgroundImage: 'url("src/assets/2148604932.jpg")', // Background image
                 backgroundSize: 'cover', // Cover the entire area
                 backgroundPosition: 'center', // Center the image
                 backgroundRepeat: 'no-repeat', // Prevent repetition
@@ -48,7 +48,7 @@ const Register = () => {
                     alignItems: 'center',
                     backgroundColor: 'rgba(255, 255, 255, 0.8)', // Transparent white background
                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Subtle shadow effect
-
+                    borderRadius:10
                 }}
             >
                 <h1>ZenStyle Registration</h1>
@@ -96,7 +96,6 @@ const Register = () => {
                 <Link to={'/login'}>
                     <Button sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Sign Up</Button>
                 </Link>
-
             </Box>
         </Box>
     );

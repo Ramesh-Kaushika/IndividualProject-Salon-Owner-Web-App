@@ -34,7 +34,6 @@ const ForgotPassword = () => {
                 backgroundPosition: 'center', // Center the image
                 backgroundRepeat: 'no-repeat', // Prevent repetition
                 backgroundColor: '#009688', // Transparent white background
-
             }}
         >
             <Box
@@ -53,7 +52,7 @@ const ForgotPassword = () => {
 
                 }}
             >
-                <img style={{ width: '50%', height: 'auto', borderRadius: 2 }} src="src/assets/7070628_3275434.jpg" alt="BigCo Inc. logo" />
+                <img style={{ width: '50%', height: 'auto', borderRadius: 2 }} src="src/assets/7070628_3275434.jpg" alt="Forogot Password image" />
                 <Box
                     sx={{
                         display: 'flex',
@@ -65,7 +64,7 @@ const ForgotPassword = () => {
                 >
                     <h1 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>ZenStyle Salon Administrator</h1>
                     <Box sx={{  marginBottom: '1.5rem' }}>
-                        <h2 style={{ fontSize: '1.5rem',marginBottom: 0 }}>Forgot Password</h2>
+                        <h1 style={{ fontSize: '1.5rem',marginBottom: 0 }}>Forgot Password</h1>
                         <h4 style={{ fontSize: '1.2rem', marginTop: 0 }}>Don't Worry!</h4>
                         <h5 style={{ fontWeight: '400', fontSize: '1rem', marginBottom: '1.5rem' }}>
                             Enter Your Registered Mobile Number {"\n"} and we will send you a verification code.
@@ -73,12 +72,12 @@ const ForgotPassword = () => {
                     </Box>
 
                     <TextField
-                        sx={{ width: '100%' }} // Full width of the content box
+                        sx={{ width: '65%' }} // Full width of the content box
                         id="standard-basic"
                         label="Enter Mobile Number"
                         variant="standard"
                     />
-                    <Link to={'/Verify'} style={{ width: '100%', marginTop: '1.5rem' }}>
+                    <Link to={'/Verify'} style={{ width: '65%', marginTop: '1.5rem' }}>
                         <Button
                             sx={{
                                 backgroundColor: '#009688',
@@ -92,8 +91,6 @@ const ForgotPassword = () => {
                     </Link>
                 </Box>
             </Box>
-
-
         </Box>
     );
 };
