@@ -97,8 +97,6 @@ const Register = () => {
                     <Button sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Sign Up</Button>
                 </Link>
 
-
-
             </Box>
         </Box>
     );
