@@ -1,6 +1,7 @@
 import AddPromotion from "../../pages/AddPromotion/AddPromotion.jsx";
 import AddSchedule from "../../pages/AddSchedule/AddSchedule.jsx";
 import Contact from "../../pages/Contact/Contact.jsx";
+import ViewEmployee from "../../pages/ViewEmployee/ViewEmployee.jsx";
 
 
 const routes = [
@@ -22,7 +23,12 @@ const routes = [
         path:"/contact",
         component:<Contact/>
     },
-    // {},
+    {
+        name:"ViewEmployee",
+        key:"ViewEmployee",
+        path:"/view-employee",
+        component:<ViewEmployee/>
+    },
     // {},
 ]
 

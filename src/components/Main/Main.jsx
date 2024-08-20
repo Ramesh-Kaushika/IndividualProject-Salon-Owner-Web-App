@@ -165,6 +165,7 @@ export default function Main() {
                                         {index === 0 && <DashboardIcon/>}
                                         {index === 1 && <ShoppingCartIcon/>}
                                         {index === 2 && <PageviewIcon/>}
+                                        {index === 3 && <PageviewIcon/>}
                                     </ListItemIcon>
                                     <ListItemText primary={val.key} sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
