@@ -11,15 +11,22 @@ import {
     TextField
 } from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-const Login = () => {
+const Login = ({onLogin}) => {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = React.useState(false);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
+    };
+
+    const handleButtonClick = (e) => {
+        e.preventDefault();
+        // Assuming login validation is successful
+        onLogin();
     };
 
     return (
@@ -74,9 +81,9 @@ const Login = () => {
                         }
                     />
                 </FormControl>
-                <Link to={'/main'}>
-                    <Button sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Log In</Button>
-                </Link>
+
+                    <Button onClick={handleButtonClick} sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Log In</Button>
+
                 <Divider sx={{ width: '100%', marginY: 2 }} />
                 <Link to={'/register'}>
                     <Button sx={{backgroundColor: '#009688', width: '25ch', textTransform: 'none', }} variant="contained">Create New Account</Button>
