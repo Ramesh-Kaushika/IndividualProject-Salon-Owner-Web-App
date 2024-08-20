@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ViewEmployee(props) {
+function ViewEmployee() {
     return (
         <div>ViewEmployee</div>
     );

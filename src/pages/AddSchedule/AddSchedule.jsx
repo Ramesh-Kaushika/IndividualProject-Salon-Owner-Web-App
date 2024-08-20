@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddSchedule(props) {
+function AddSchedule() {
     return (
         <div>AddSchedule</div>
     );
