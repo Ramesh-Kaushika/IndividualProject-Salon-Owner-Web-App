@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login.jsx";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword.jsx";
 import Verify from "./pages/Verify/Verify.jsx";
 import CreateNewPassword from "./pages/CreateNewPassword/CreateNewPassword.jsx";
+import MiniDrawer from "./components/Main/Main.jsx";
 
 function App() {
     const [count, setCount] = useState(0)
@@ -22,6 +23,7 @@ function App() {
                     <Route path={'/forgot-password'} element={<ForgotPassword/>}/>
                     <Route path={'/verify'} element={<Verify/>}/>
                     <Route path={'/create-new-password'} element={<CreateNewPassword/>}/>
+                    <Route path={'/main'} element={<MiniDrawer/>}/>
 
                 </Routes>
 

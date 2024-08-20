@@ -74,7 +74,9 @@ const Login = () => {
                         }
                     />
                 </FormControl>
-                <Button sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Log In</Button>
+                <Link to={'/main'}>
+                    <Button sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Log In</Button>
+                </Link>
                 <Divider sx={{ width: '100%', marginY: 2 }} />
                 <Link to={'/register'}>
                     <Button sx={{backgroundColor: '#009688', width: '25ch', textTransform: 'none', }} variant="contained">Create New Account</Button>
