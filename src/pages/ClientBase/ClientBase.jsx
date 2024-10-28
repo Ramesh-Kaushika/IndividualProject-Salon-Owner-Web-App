@@ -81,7 +81,7 @@ const ClientBase = () => {
                             <td>{client.email}</td>
                             <td>{client.phone}</td>
                             <td>
-                                <Box sx={{ display: 'flex', gap: 1 }}>
+                                <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
                                     <Button
                                         size="sm"
                                         variant="soft"

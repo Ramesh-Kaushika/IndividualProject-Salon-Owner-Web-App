@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import {styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -50,7 +50,7 @@ const closedMixin = (theme) => ({
     },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
+const DrawerHeader = styled('div')(({theme}) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -62,7 +62,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
+})(({theme, open}) => ({
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -78,8 +78,8 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
+const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})(
+    ({theme, open}) => ({
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
@@ -96,12 +96,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 
-
-
 export default function Main() {
 
     const getRoutes = (value) => value.map(
-        (val)=>
+        (val) =>
             <Route key={val.key} path={val.path} element={val.component}/>
     )
 
@@ -117,10 +115,10 @@ export default function Main() {
     };
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
+        <Box sx={{display: 'flex'}}>
+            <CssBaseline/>
             <AppBar position="fixed" open={open}>
-                <Toolbar sx={{backgroundColor:'#009688'}}>
+                <Toolbar sx={{backgroundColor: '#009688'}}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -128,36 +126,49 @@ export default function Main() {
                         edge="start"
                         sx={{
                             marginRight: 5,
-                            ...(open && { display: 'none' }),
+                            ...(open && {display: 'none'}),
                         }}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
-                    <Typography  fontWeight={500} variant="h6" noWrap component="div">
-                     ZenStyle Salon Dashboard
+                    <Typography fontWeight={500} variant="h6" noWrap component="div">
+                        ZenStyle Salon Dashboard
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Drawer variant="permanent" open={open}>
+            <Drawer sx={{
+                '& .MuiDrawer-paper': {
+                    backgroundColor: '#212121',
+                },
+            }}
+                    variant="permanent" open={open}>
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                    <IconButton onClick={handleDrawerClose} sx={{
+                        color: '#ffffff',
+                    }}>
+                        {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
                     </IconButton>
                 </DrawerHeader>
-                <Divider />
+                <Divider
+                    sx={{
+                        backgroundColor: '#ffffff', // Changes the line color
+                    }}
+                />
                 <List>
                     {routes.map((val, index) => (
-                        <Link style={{textDecoration: 'none',color: '#2d3436'}} key={val.key} to={val.path}>
-                            <ListItem key={val.key} disablePadding sx={{ display: 'block' }}>
+                        <Link style={{textDecoration: 'none', color: '#2d3436'}} key={val.key} to={val.path}>
+                            <ListItem key={val.key} disablePadding sx={{display: 'block'}}>
                                 <ListItemButton
                                     sx={{
                                         minHeight: 48,
                                         justifyContent: open ? 'initial' : 'center',
                                         px: 2.5,
+                                        color: '#ffffff',
                                     }}
                                 >
                                     <ListItemIcon
                                         sx={{
+                                            color: '#ffffff',
                                             minWidth: 0,
                                             mr: open ? 3 : 'auto',
                                             justifyContent: 'center',
@@ -171,16 +182,16 @@ export default function Main() {
                                         {index === 5 && <AddIcCallSharpIcon/>}
                                         {index === 6 && <ThumbUpOffAltSharpIcon/>}
                                     </ListItemIcon>
-                                    <ListItemText primary={val.key} sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary={val.key} sx={{opacity: open ? 1 : 0}}/>
                                 </ListItemButton>
                             </ListItem>
                         </Link>
                     ))}
                 </List>
-                <Divider />
+
             </Drawer>
-            <Box component="main" sx={{  width: '100%', p: 3 }}>
-                <DrawerHeader />
+            <Box component="main" sx={{width: '100%', p: 3}}>
+                <DrawerHeader/>
                 <Box>
                     <Routes>
                         {getRoutes(routes)}
