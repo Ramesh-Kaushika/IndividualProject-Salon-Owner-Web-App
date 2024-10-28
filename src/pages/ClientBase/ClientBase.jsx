@@ -69,7 +69,7 @@ const ClientBase = () => {
                         <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Email</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Edite</th>
+                        <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
 
                     </tr>
                     </thead>
@@ -82,9 +82,20 @@ const ClientBase = () => {
                             <td>{client.phone}</td>
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 }}>
-                                    <Button size="sm" variant="soft" color="danger">
+                                    <Button
+                                        size="sm"
+                                        variant="soft"
+                                        sx={{
+                                            color: 'white',
+                                            backgroundColor: 'darkred',
+                                            '&:hover': {
+                                                backgroundColor: 'red', // Hover color
+                                            },
+                                        }}
+                                    >
                                         Delete
                                     </Button>
+
                                 </Box>
                             </td>
                         </tr>
