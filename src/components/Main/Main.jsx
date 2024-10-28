@@ -132,8 +132,8 @@ export default function Main() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Mini variant drawer
+                    <Typography  fontWeight={500} variant="h6" noWrap component="div">
+                     ZenStyle Salon Dashboard
                     </Typography>
                 </Toolbar>
             </AppBar>

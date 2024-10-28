@@ -1,21 +1,16 @@
 import AddPromotion from "../../pages/AddPromotion/AddPromotion.jsx";
-import AddSchedule from "../../pages/AddSchedule/AddSchedule.jsx";
 import Contact from "../../pages/Contact/Contact.jsx";
 import ViewEmployee from "../../pages/ViewEmployee/ViewEmployee.jsx";
+import ClientBase from "../../pages/ClientBase/ClientBase.jsx";
+import FeedBack from "../../pages/FeedBack/FeedBack.jsx";
 
 
 const routes = [
     {
-        name:"AddPromotion",
-        key:"AddPromotion",
+        name:"Promotions",
+        key:"Promotions",
         path:"/add-promotion",
         component:<AddPromotion/>
-    },
-    {
-        name:"AddSchedule",
-        key:"AddSchedule",
-        path:"/add-schedule",
-        component:<AddSchedule/>
     },
     {
         name:"Contact",
@@ -25,9 +20,21 @@ const routes = [
     },
     {
         name:"ViewEmployee",
-        key:"ViewEmployee",
+        key:"Employees",
         path:"/view-employee",
         component:<ViewEmployee/>
+    },
+    {
+        name:"Client Base",
+        key:"Client Base",
+        path:"/client-base",
+        component:<ClientBase/>
+    },
+    {
+        name:"Feedback",
+        key:"Feedback",
+        path:"/feedback",
+        component:<FeedBack/>
     },
     // {},
 ]
