@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import StarIcon from '@mui/icons-material/Star';
 
 const FeedBack = () => {
     // Sample data for the table
     const [clients, setClients] = useState([
-        { id: 1, name: 'Alice', gender: 'Female', email: 'alice@example.com', phone: '123-456-7890' },
-        { id: 2, name: 'Bob', gender: 'Male', email: 'bob@example.com', phone: '234-567-8901' },
-        { id: 3, name: 'Charlie', gender: 'Male', email: 'charlie@example.com', phone: '345-678-9012' },
+        { id: 1, date: '2024.10.10', comment: 'Well done', rating: '3.0',},
+        { id: 2, date: '2024.10.11', comment: 'Nice!', rating: '4.0',},
+        { id: 3, date: '2024.10.12', comment: 'Excellent Staff', rating: '5.0',},
     ]);
 
     // Function to handle deleting a client
@@ -22,7 +22,7 @@ const FeedBack = () => {
     return (
         <Box sx={{ width: '100%' }}>
             <Typography level="body-sm" sx={{ textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
-                Client Base
+                Feedback
             </Typography>
             <Sheet
                 variant="outlined"
@@ -65,10 +65,9 @@ const FeedBack = () => {
                 >
                     <thead>
                     <tr style={{ backgroundColor: '#212121' }}>
-                        <th style={{ color: '#ffffff',width: 200 }}>Name</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Email</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Date</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Comment</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Rating</th>
                         <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
 
                     </tr>
@@ -76,12 +75,13 @@ const FeedBack = () => {
                     <tbody>
                     {clients.map((client) => (
                         <tr key={client.id}>
-                            <td>{client.name}</td>
-                            <td>{client.gender}</td>
-                            <td>{client.email}</td>
-                            <td>{client.phone}</td>
-                            <td>
-                                <Box sx={{ display: 'flex', gap: 1 }}>
+                            <td>{client.date}</td>
+                            <td>{client.comment}</td>
+                            <td style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <StarIcon sx={{color:'#dea711'}}/>
+                                {client.rating}</td>
+                            <td >
+                                <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center' }}>
                                     <Button
                                         size="sm"
                                         variant="soft"
