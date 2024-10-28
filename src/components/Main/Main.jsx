@@ -16,14 +16,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import {Link, Navigate, Route, Routes} from "react-router-dom";
 import routes from "../../common/Navigation/routes.jsx";
-import AddPromotion from "../../pages/AddPromotion/AddPromotion.jsx";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PageviewIcon from '@mui/icons-material/Pageview';
+import GroupIcon from '@mui/icons-material/Group';
+import BadgeIcon from '@mui/icons-material/Badge';
+import LocalLibrarySharpIcon from '@mui/icons-material/LocalLibrarySharp';
+import NotificationAddSharpIcon from '@mui/icons-material/NotificationAddSharp';
+import AttachMoneySharpIcon from '@mui/icons-material/AttachMoneySharp';
+import AddIcCallSharpIcon from '@mui/icons-material/AddIcCallSharp';
+import ThumbUpOffAltSharpIcon from '@mui/icons-material/ThumbUpOffAltSharp';
 
 
 const drawerWidth = 240;
@@ -162,10 +163,13 @@ export default function Main() {
                                             justifyContent: 'center',
                                         }}
                                     >
-                                        {index === 0 && <DashboardIcon/>}
-                                        {index === 1 && <ShoppingCartIcon/>}
-                                        {index === 2 && <PageviewIcon/>}
-                                        {index === 3 && <PageviewIcon/>}
+                                        {index === 0 && <GroupIcon/>}
+                                        {index === 1 && <BadgeIcon/>}
+                                        {index === 2 && <LocalLibrarySharpIcon/>}
+                                        {index === 3 && <NotificationAddSharpIcon/>}
+                                        {index === 4 && <AttachMoneySharpIcon/>}
+                                        {index === 5 && <AddIcCallSharpIcon/>}
+                                        {index === 6 && <ThumbUpOffAltSharpIcon/>}
                                     </ListItemIcon>
                                     <ListItemText primary={val.key} sx={{ opacity: open ? 1 : 0 }} />
                                 </ListItemButton>
