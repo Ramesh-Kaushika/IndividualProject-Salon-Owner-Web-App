@@ -119,7 +119,7 @@ export default function Main() {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
-                <Toolbar>
+                <Toolbar sx={{backgroundColor:'#009688'}}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
