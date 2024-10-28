@@ -21,8 +21,8 @@ const ClientBase = () => {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Typography level="body-sm" sx={{ textAlign: 'center', pb: 2 }}>
-                ← Client Base →
+            <Typography level="body-sm" sx={{ textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
+                 Client Base
             </Typography>
             <Sheet
                 variant="outlined"
@@ -55,22 +55,21 @@ const ClientBase = () => {
                     backgroundAttachment: 'local, local, scroll, scroll',
                     backgroundPosition:
                         'var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height), var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height)',
-                    backgroundColor: 'background.surface',
+
                 })}
             >
                 <Table
                     borderAxis="bothBetween"
                     stripe="odd"
                     hoverRow
-
                 >
                     <thead>
-                    <tr>
-                        <th style={{ width: 200 }}>Name</th>
-                        <th style={{ width: 200 }}>Gender</th>
-                        <th style={{ width: 200 }}>Email</th>
-                        <th style={{ width: 200 }}>Phone</th>
-                        <th style={{ width: 200 }}>Edite</th>
+                    <tr style={{ backgroundColor: '#212121' }}>
+                        <th style={{ color: '#ffffff',width: 200 }}>Name</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Email</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Edite</th>
 
                     </tr>
                     </thead>
@@ -83,7 +82,6 @@ const ClientBase = () => {
                             <td>{client.phone}</td>
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 }}>
-
                                     <Button size="sm" variant="soft" color="danger">
                                         Delete
                                     </Button>
