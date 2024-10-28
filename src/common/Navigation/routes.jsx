@@ -4,9 +4,34 @@ import ViewEmployee from "../../pages/ViewEmployee/ViewEmployee.jsx";
 import ClientBase from "../../pages/ClientBase/ClientBase.jsx";
 import FeedBack from "../../pages/FeedBack/FeedBack.jsx";
 import Appointment from "../../pages/Appointment/Appointment.jsx";
+import Notification from "../../pages/Notification/Notification.jsx";
 
 
 const routes = [
+    {
+        name:"Client Base",
+        key:"Client Base",
+        path:"/client-base",
+        component:<ClientBase/>
+    },
+    {
+        name:"ViewEmployee",
+        key:"Employees",
+        path:"/view-employee",
+        component:<ViewEmployee/>
+    },
+    {
+        name:"Appointment",
+        key:"Appointments",
+        path:"/appointments",
+        component:<Appointment/>
+    },
+    {
+        name:"Notification",
+        key:"Notifications",
+        path:"/notifications",
+        component:<Notification/>
+    },
     {
         name:"Promotions",
         key:"Promotions",
@@ -20,28 +45,10 @@ const routes = [
         component:<Contact/>
     },
     {
-        name:"ViewEmployee",
-        key:"Employees",
-        path:"/view-employee",
-        component:<ViewEmployee/>
-    },
-    {
-        name:"Client Base",
-        key:"Client Base",
-        path:"/client-base",
-        component:<ClientBase/>
-    },
-    {
         name:"Feedback",
-        key:"Feedback",
-        path:"/feedback",
+        key:"Feedbacks",
+        path:"/feedbacks",
         component:<FeedBack/>
-    },
-    {
-        name:"Appointment",
-        key:"Appointment",
-        path:"/appointment",
-        component:<Appointment/>
     },
     // {},
 ]

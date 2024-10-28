@@ -182,7 +182,7 @@ export default function Main() {
                         {getRoutes(routes)}
                         {/*<Route path={'/main/*'} element={<Navigate to={'/main/add-promotion'}/>}/>*/}
                         {/*<Route path={'/main/*'} element={<Main/>}/>*/}
-                        <Route path={'*'} element={<Navigate to={'/add-promotion'}/>}/>
+                        <Route path={'*'} element={<Navigate to={'/client-base'}/>}/>
                     </Routes>
                 </Box>
             </Box>
