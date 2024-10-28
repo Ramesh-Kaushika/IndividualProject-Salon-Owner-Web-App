@@ -3,6 +3,7 @@ import Contact from "../../pages/Contact/Contact.jsx";
 import ViewEmployee from "../../pages/ViewEmployee/ViewEmployee.jsx";
 import ClientBase from "../../pages/ClientBase/ClientBase.jsx";
 import FeedBack from "../../pages/FeedBack/FeedBack.jsx";
+import Appointment from "../../pages/Appointment/Appointment.jsx";
 
 
 const routes = [
@@ -35,6 +36,12 @@ const routes = [
         key:"Feedback",
         path:"/feedback",
         component:<FeedBack/>
+    },
+    {
+        name:"Appointment",
+        key:"Appointment",
+        path:"/appointment",
+        component:<Appointment/>
     },
     // {},
 ]
