@@ -16,7 +16,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import {Link, Navigate, Route, Routes} from "react-router-dom";
+import {Link, Navigate, Route, Routes, useLocation} from "react-router-dom";
 import routes from "../../common/Navigation/routes.jsx";
 import GroupIcon from '@mui/icons-material/Group';
 import BadgeIcon from '@mui/icons-material/Badge';
@@ -100,6 +100,8 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
 
 export default function Main() {
 
+    const location = useLocation();  // Get the current route path
+
     const logoutonclick = () => {
         localStorage.removeItem('stToken')
         window.location.reload();
@@ -170,10 +172,14 @@ export default function Main() {
                             <ListItem key={val.key} disablePadding sx={{display: 'block'}}>
                                 <ListItemButton
                                     sx={{
+                                        backgroundColor: location.pathname === val.path ? '#009688' : 'transparent',  // Highlight active tab
                                         minHeight: 48,
                                         justifyContent: open ? 'initial' : 'center',
                                         px: 2.5,
                                         color: '#ffffff',
+                                        '&:hover':{
+                                            backgroundColor: '#484848',
+                                        }
                                     }}
                                 >
                                     <ListItemIcon
