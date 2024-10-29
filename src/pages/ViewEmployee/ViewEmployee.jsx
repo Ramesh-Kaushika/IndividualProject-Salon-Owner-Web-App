@@ -3,15 +3,15 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, IconButton } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import ControlPointSharpIcon from '@mui/icons-material/ControlPointSharp';
 import CustomDialog from "../../components/CustomDialog/CustomDialog.jsx";
 
 
-
 const ViewEmployee = () => {
-
     const [open, setOpen] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
+    const [selectedClient, setSelectedClient] = useState(null);
     const [formValues, setFormValues] = useState({
         name: '',
         position: '',
@@ -20,155 +20,132 @@ const ViewEmployee = () => {
         employee_salary: '',
     });
 
-    const handleClickOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [clients, setClients] = useState([
+        { id: 1, name: 'Ramesh', position: 'Hair Specialist', email: 'alice@example.com', phone: '123-456-7890', employee_salary: '20000/=' },
+        { id: 2, name: 'Kaushika', position: 'Nail Polisher', email: 'bob@example.com', phone: '234-567-8901', employee_salary: '50000/=' },
+        { id: 3, name: 'Nirushi', position: 'Skin Specialist', email: 'charlie@example.com', phone: '345-678-9012', employee_salary: '70000/=' },
+    ]);
+
+    const handleClickOpen = (client = null) => {
+        if (client) {
+            setIsEdit(true);
+            setSelectedClient(client);
+            setFormValues({
+                name: client.name,
+                position: client.position,
+                email: client.email,
+                phone: client.phone,
+                employee_salary: client.employee_salary,
+            });
+        } else {
+            setIsEdit(false);
+            setFormValues({ name: '', position: '', email: '', phone: '', employee_salary: '' });
+        }
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        setSelectedClient(null);
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
 
-    // Sample data for the table
-    const [clients, setClients] = useState([
-        { id: 1, name: 'Ramesh', position: 'Hair Specialist', email: 'alice@example.com', phone: '123-456-7890',employee_salary:'20000/=' },
-        { id: 2, name: 'Kaushika', position: 'Nail Polisher', email: 'bob@example.com', phone: '234-567-8901', employee_salary:'50000/='},
-        { id: 3, name: 'Nirushi', position: 'Skin Specialist', email: 'charlie@example.com', phone: '345-678-9012', employee_salary:'70000/=' },
-    ]);
-
-    // Function to handle deleting a client
-    const deleteClient = (id) => {
-        setClients(clients.filter((client) => client.id !== id));
+    const handleSave = () => {
+        if (isEdit) {
+            // Update the client
+            setClients(
+                clients.map((client) => (client.id === selectedClient.id ? { ...client, ...formValues } : client))
+            );
+        } else {
+            // Add new client
+            const newClient = { ...formValues, id: clients.length + 1 };
+            setClients([...clients, newClient]);
+        }
+        handleClose();
     };
 
     return (
         <>
             <Box sx={{ width: '100%' }}>
-            <Box sx={{display:'flex',
-                justifyContent:'space-between',
-                alignItems:'center',
-            }}>
-                <Typography level="body-sm" sx={{margin:'0 auto', textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
-                    Employees Dashboard
-                </Typography>
-                <Button onClick={handleClickOpen} variant="contained" sx={{
-                    backgroundColor: 'red',
-                    '&:hover': {
-                        backgroundColor: '#009688', // Hover color
-                    },
-                    paddingY:1.2,
-                    borderRadius:20,
-                    color: 'white', width:'15%'}} endIcon={<ControlPointSharpIcon/>}>
-                    Add Employees
-                </Button>
-            </Box>
-            <Sheet
-                variant="outlined"
-                sx={(theme) => ({
-                    '--TableCell-height': '40px',
-                    // the number is the amount of the header rows.
-                    '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
-                    '--Table-firstColumnWidth': '80px',
-                    '--Table-lastColumnWidth': '144px',
-                    // background needs to have transparency to show the scrolling shadows
-                    '--TableRow-stripeBackground': 'rgba(0 0 0 / 0.04)',
-                    '--TableRow-hoverBackground': 'rgba(0 0 0 / 0.08)',
-                    overflow: 'auto',
-                    background: `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
-            linear-gradient(to right, rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
-            radial-gradient(
-              farthest-side at 0 50%,
-              rgba(0, 0, 0, 0.12),
-              rgba(0, 0, 0, 0)
-            ),
-            radial-gradient(
-                farthest-side at 100% 50%,
-                rgba(0, 0, 0, 0.12),
-                rgba(0, 0, 0, 0)
-              )
-              0 100%`,
-                    backgroundSize:
-                        '40px calc(100% - var(--TableCell-height)), 40px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height))',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'local, local, scroll, scroll',
-                    backgroundPosition:
-                        'var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height), var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height)',
-
-                })}
-            >
-                <Table
-                    borderAxis="bothBetween"
-                    stripe="odd"
-                    hoverRow
-                >
-                    <thead>
-                    <tr style={{ backgroundColor: '#212121' }}>
-                        <th style={{ color: '#ffffff',width: 200 }}>Name</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Position</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Email</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Employee Salary</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Edit</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {clients.map((client) => (
-                        <tr key={client.id}>
-                            <td>{client.name}</td>
-                            <td>{client.position}</td>
-                            <td>{client.email}</td>
-                            <td>{client.phone}</td>
-                            <td>Rs.{client.employee_salary}</td>
-                            <td>
-                                <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
-                                    <Button
-                                        size="sm"
-                                        variant="soft"
-                                        sx={{
-                                            color: 'white',
-                                            backgroundColor: 'darkgreen',
-                                            '&:hover': {
-                                                backgroundColor: 'green', // Hover color
-                                            },
-                                        }}
-                                    >
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        size="sm"
-                                        variant="soft"
-                                        sx={{
-                                            color: 'white',
-                                            backgroundColor: 'darkred',
-                                            '&:hover': {
-                                                backgroundColor: 'red', // Hover color
-                                            },
-                                        }}
-                                    >
-                                        Delete
-                                    </Button>
-                                </Box>
-                            </td>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Typography level="body-sm" sx={{ margin: '0 auto', textAlign: 'center', pb: 2, fontWeight: '700', fontSize: 40 }}>
+                        Employees Dashboard
+                    </Typography>
+                    <Button onClick={() => handleClickOpen()} variant="contained" sx={{ backgroundColor: 'red', '&:hover': { backgroundColor: '#009688' }, paddingY: 1.2, borderRadius: 20, color: 'white', width: '15%' }} endIcon={<ControlPointSharpIcon />}>
+                        Add Employees
+                    </Button>
+                </Box>
+                {/* Table displaying employee data */}
+                <Sheet variant="outlined" sx={{ overflow: 'auto' }}>
+                    <Table borderAxis="bothBetween" stripe="odd" hoverRow>
+                        <thead>
+                        <tr style={{ backgroundColor: '#212121' }}>
+                            <th style={{  width: 200 }}>Name</th>
+                            <th style={{ color: '#ffffff', width: 200 }}>Position</th>
+                            <th style={{ color: '#ffffff', width: 200 }}>Email</th>
+                            <th style={{ color: '#ffffff', width: 200 }}>Phone</th>
+                            <th style={{ color: '#ffffff', width: 200 }}>Employee Salary</th>
+                            <th style={{ color: '#ffffff', width: 200 }}>Actions</th>
                         </tr>
-                    ))}
-                    </tbody>
-                </Table>
-            </Sheet>
-        </Box>
-            {/* Existing Table Component */}
-            {/* Reusable Dialog Component */}
-            <CustomDialog
-                open={open}
-                onClose={handleClose}
-                title="Add Employee"
-            >
-                <TextField label="Name" variant="standard" fullWidth margin="dense" name="name" value={formValues.name} onChange={handleInputChange} />
-                <TextField label="Position" variant="standard" fullWidth margin="dense" name="position" value={formValues.position} onChange={handleInputChange} />
-                <TextField label="Email" variant="standard" fullWidth margin="dense" name="email" value={formValues.email} onChange={handleInputChange} />
-                <TextField label="Phone" variant="standard" fullWidth margin="dense" name="phone" value={formValues.phone} onChange={handleInputChange} />
-                <TextField label="Employee Salary" variant="standard" fullWidth margin="dense" name="employee_salary" value={formValues.employee_salary} onChange={handleInputChange} />
-            </CustomDialog>
-        </>
+                        </thead>
+                        <tbody>
+                        {clients.map((client) => (
+                            <tr key={client.id}>
+                                <td>{client.name}</td>
+                                <td>{client.position}</td>
+                                <td>{client.email}</td>
+                                <td>{client.phone}</td>
+                                <td>Rs.{client.employee_salary}</td>
+                                <td>
+                                    <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Button
+                                            size="small"
+                                            variant="contained"
+                                            color="primary"
+                                            onClick={() => handleClickOpen(client)}
+                                        >
+                                            Edit
+                                        </Button>
+                                        <Button
+                                            size="small"
+                                            variant="contained"
+                                            color="secondary"
+                                            onClick={() => setClients(clients.filter((c) => c.id !== client.id))}
+                                        >
+                                            Delete
+                                        </Button>
+                                    </Box>
+                                </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </Table>
+                </Sheet>
 
+                {/* Reusable Dialog Component */}
+                <CustomDialog
+                    open={open}
+                    onClose={handleClose}
+                    title={isEdit ? 'Edit Employee' : 'Add Employee'}
+                    actions={
+                        <>
+                            <Button onClick={handleClose} color="primary">Cancel</Button>
+                            <Button onClick={handleSave} color="primary" variant="contained">Save</Button>
+                        </>
+                    }
+                >
+                    <TextField label="Name" variant="standard" fullWidth margin="dense" name="name" value={formValues.name} onChange={handleInputChange} />
+                    <TextField label="Position" variant="standard" fullWidth margin="dense" name="position" value={formValues.position} onChange={handleInputChange} />
+                    <TextField label="Email" variant="standard" fullWidth margin="dense" name="email" value={formValues.email} onChange={handleInputChange} />
+                    <TextField label="Phone" variant="standard" fullWidth margin="dense" name="phone" value={formValues.phone} onChange={handleInputChange} />
+                    <TextField label="Employee Salary" variant="standard" fullWidth margin="dense" name="employee_salary" value={formValues.employee_salary} onChange={handleInputChange} />
+                </CustomDialog>
+            </Box>
+        </>
     );
 };
 
