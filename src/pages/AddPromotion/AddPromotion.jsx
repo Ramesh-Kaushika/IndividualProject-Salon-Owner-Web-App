@@ -4,7 +4,8 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
+import {Button} from "@mui/material";
+import ControlPointSharpIcon from '@mui/icons-material/ControlPointSharp';
 
 const AddPromotion = () => {
     // Sample data for the table
@@ -21,9 +22,25 @@ const AddPromotion = () => {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Typography level="body-sm" sx={{ textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
-                Promotions
-            </Typography>
+            <Box sx={{display:'flex',
+                justifyContent:'space-between',
+                alignItems:'center',
+            }}>
+                <Typography level="body-sm" sx={{margin:'0 auto', textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
+                    Promotions
+                </Typography>
+                <Button  onClick={()=> {}} variant="contained" sx={{
+                    backgroundColor: 'red',
+                    '&:hover': {
+                        backgroundColor: '#009688', // Hover color
+                    },
+                    paddingY:1.2,
+                    borderRadius:20,
+                    color: 'white', width:'15%'}} endIcon={<ControlPointSharpIcon/>}>
+                    Add Promotions
+                </Button>
+            </Box>
+
             <Sheet
                 variant="outlined"
                 sx={(theme) => ({

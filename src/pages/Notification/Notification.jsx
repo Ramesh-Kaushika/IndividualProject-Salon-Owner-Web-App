@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
+import {Button} from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
+
+
 
 const Notification = () => {
     // Sample data for the table
@@ -21,9 +23,24 @@ const Notification = () => {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Typography level="body-sm" sx={{ textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
+            <Box sx={{display:'flex',
+                justifyContent:'space-between',
+                alignItems:'center',
+            }}>
+                <Typography level="body-sm" sx={{margin:'0 auto', textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
                 Notifications
-            </Typography>
+                </Typography>
+                <Button  onClick={()=> {}} variant="contained" sx={{
+                    backgroundColor: 'red',
+                    '&:hover': {
+                        backgroundColor: '#009688', // Hover color
+                    },
+                    paddingY:1.2,
+                    borderRadius:20,
+                    color: 'white', width:'16%'}} endIcon={<SendIcon/>}>
+                    Add Notifications
+                </Button>
+            </Box>
             <Sheet
                 variant="outlined"
                 sx={(theme) => ({
