@@ -27,6 +27,7 @@ import AddIcCallSharpIcon from '@mui/icons-material/AddIcCallSharp';
 import ThumbUpOffAltSharpIcon from '@mui/icons-material/ThumbUpOffAltSharp';
 import {Button} from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
+import logo from '../../assets/ZENSTYLE.png';
 
 
 const drawerWidth = 240;
@@ -155,17 +156,37 @@ export default function Main() {
             }}
                     variant="permanent" open={open}>
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose} sx={{
-                        color: '#ffffff',
-                    }}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
-                    </IconButton>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between', // space-between aligns items to start and end
+                            width: '100%', // Full width for the Box to allow space for both elements
+                        }}
+                    >
+                        {/* Centered, circular logo */}
+                        <Box
+                            sx={{
+                                margin:'0 auto',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: '90%',
+                                width: '90px', // set width and height to make the Box a square
+                                borderRadius: '50%', // makes the shape circular
+                                overflow: 'hidden', // hides any overflow to keep it circular
+                            }}
+                        >
+                            <img src={logo} alt="Logo" style={{ width: '100%', height: '100%' }} />
+                        </Box>
+
+                        {/* IconButton aligned at the end */}
+                        <IconButton onClick={handleDrawerClose} sx={{ color: '#ffffff' }}>
+                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        </IconButton>
+                    </Box>
                 </DrawerHeader>
-                <Divider
-                    sx={{
-                        backgroundColor: '#ffffff', // Changes the line color
-                    }}
-                />
+
                 <List>
                     {routes.map((val, index) => (
                         <Link style={{textDecoration: 'none', color: '#2d3436'}} key={val.key} to={val.path}>
