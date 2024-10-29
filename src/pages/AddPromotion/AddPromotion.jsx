@@ -9,9 +9,9 @@ import Button from '@mui/joy/Button';
 const AddPromotion = () => {
     // Sample data for the table
     const [clients, setClients] = useState([
-        { id: 1, name: 'Alice', gender: 'Female', email: 'alice@example.com', phone: '123-456-7890' },
-        { id: 2, name: 'Bob', gender: 'Male', email: 'bob@example.com', phone: '234-567-8901' },
-        { id: 3, name: 'Charlie', gender: 'Male', email: 'charlie@example.com', phone: '345-678-9012' },
+        { id: 1, title: 'Hair Cutting', description: 'Male & Female', startDate: '2024.10.10', endDate: '2024.10.30', discount:'70%', },
+        { id: 2, title: 'Makeup', description: 'With Facial', startDate: '2024.11.10', endDate: '2024.11.20',  discount:'50%', },
+        { id: 3, title: 'Dressing', description: 'Male & Female', startDate: '2024.12.10', endDate: '2024.12.29',  discount:'20%', },
     ]);
 
     // Function to handle deleting a client
@@ -65,10 +65,11 @@ const AddPromotion = () => {
                 >
                     <thead>
                     <tr style={{ backgroundColor: '#212121' }}>
-                        <th style={{ color: '#ffffff',width: 200 }}>Name</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Email</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Title</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Description</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>StartDate</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>EndDate</th>
+                        <th style={{ color: '#ffffff',width: 80 ,}}>Discount</th>
                         <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
 
                     </tr>
@@ -76,10 +77,11 @@ const AddPromotion = () => {
                     <tbody>
                     {clients.map((client) => (
                         <tr key={client.id}>
-                            <td>{client.name}</td>
-                            <td>{client.gender}</td>
-                            <td>{client.email}</td>
-                            <td>{client.phone}</td>
+                            <td>{client.title}</td>
+                            <td>{client.description}</td>
+                            <td style={{ backgroundColor: '#ffe5f3' }}>{client.startDate}</td>
+                            <td style={{ backgroundColor: '#ffe5f3' }}>{client.endDate}</td>
+                            <td  style={{  textAlign:'center'}}>{client.discount}</td>
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
                                     <Button
