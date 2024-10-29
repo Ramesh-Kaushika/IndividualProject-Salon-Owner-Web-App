@@ -9,9 +9,9 @@ import Button from '@mui/joy/Button';
 const Appointment = () => {
     // Sample data for the table
     const [clients, setClients] = useState([
-        { id: 1, name: 'Alice', gender: 'Female', email: 'alice@example.com', phone: '123-456-7890' },
-        { id: 2, name: 'Bob', gender: 'Male', email: 'bob@example.com', phone: '234-567-8901' },
-        { id: 3, name: 'Charlie', gender: 'Male', email: 'charlie@example.com', phone: '345-678-9012' },
+        { id: 1, name: 'Alice', gender: 'Female', email: 'alice@example.com', phone: '123-456-7890',date:'2024.10.10', time:'07.00AM',status:'Hair Waxing',expert:'Ramesh',},
+        { id: 2, name: 'Bob', gender: 'Male', email: 'bob@example.com', phone: '234-567-8901',date:'2024.10.10', time:'17.00PM',status:'Nail Polish',expert:'Kaushika', },
+        { id: 3, name: 'Charlie', gender: 'Male', email: 'charlie@example.com', phone: '345-678-9012',date:'2024.10.10', time:'10.00AM',status:'Pedicure',expert:'Nirushi', },
     ]);
 
     // Function to handle deleting a client
@@ -65,10 +65,14 @@ const Appointment = () => {
                 >
                     <thead>
                     <tr style={{ backgroundColor: '#212121' }}>
-                        <th style={{ color: '#ffffff',width: 200 }}>Name</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Email</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
+                        <th style={{ color: '#ffffff',width: 130 }}>Name</th>
+                        <th style={{ color: '#ffffff',width: 80 }}>Gender</th>
+                        <th style={{ color: '#ffffff',width: 180 }}>Email</th>
+                        <th style={{ color: '#ffffff',width: 130 }}>Phone</th>
+                        <th style={{ color: '#ffffff',width: 130 }}>Date</th>
+                        <th style={{ color: '#ffffff',width: 110 }}>Time</th>
+                        <th style={{ color: '#ffffff',width: 130 }}>Status</th>
+                        <th style={{ color: '#ffffff',width: 120 }}>Expert</th>
                         <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
 
                     </tr>
@@ -80,6 +84,10 @@ const Appointment = () => {
                             <td>{client.gender}</td>
                             <td>{client.email}</td>
                             <td>{client.phone}</td>
+                            <td style={{ backgroundColor: '#ffe5f3' }} >{client.date}</td>
+                            <td style={{ backgroundColor: '#ffe5f3' }}>{client.time}</td>
+                            <td>{client.status}</td>
+                            <td>{client.expert}</td>
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
                                     <Button
