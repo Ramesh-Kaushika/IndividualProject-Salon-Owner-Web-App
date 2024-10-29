@@ -9,9 +9,9 @@ import Button from '@mui/joy/Button';
 const ViewEmployee = () => {
     // Sample data for the table
     const [clients, setClients] = useState([
-        { id: 1, name: 'Alice', gender: 'Female', email: 'alice@example.com', phone: '123-456-7890' },
-        { id: 2, name: 'Bob', gender: 'Male', email: 'bob@example.com', phone: '234-567-8901' },
-        { id: 3, name: 'Charlie', gender: 'Male', email: 'charlie@example.com', phone: '345-678-9012' },
+        { id: 1, name: 'Ramesh', position: 'Hair Specialist', email: 'alice@example.com', phone: '123-456-7890',employee_salary:'20000/=' },
+        { id: 2, name: 'Kaushika', position: 'Nail Polisher', email: 'bob@example.com', phone: '234-567-8901', employee_salary:'50000/='},
+        { id: 3, name: 'Nirushi', position: 'Skin Specialist', email: 'charlie@example.com', phone: '345-678-9012', employee_salary:'70000/=' },
     ]);
 
     // Function to handle deleting a client
@@ -66,10 +66,11 @@ const ViewEmployee = () => {
                     <thead>
                     <tr style={{ backgroundColor: '#212121' }}>
                         <th style={{ color: '#ffffff',width: 200 }}>Name</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Position</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Email</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
-                        <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Employee Salary</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Edit</th>
 
                     </tr>
                     </thead>
@@ -77,11 +78,25 @@ const ViewEmployee = () => {
                     {clients.map((client) => (
                         <tr key={client.id}>
                             <td>{client.name}</td>
-                            <td>{client.gender}</td>
+                            <td>{client.position}</td>
                             <td>{client.email}</td>
                             <td>{client.phone}</td>
+                            <td>Rs.{client.employee_salary}</td>
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
+                                    <Button
+                                        size="sm"
+                                        variant="soft"
+                                        sx={{
+                                            color: 'white',
+                                            backgroundColor: 'darkgreen',
+                                            '&:hover': {
+                                                backgroundColor: 'green', // Hover color
+                                            },
+                                        }}
+                                    >
+                                        Edit
+                                    </Button>
                                     <Button
                                         size="sm"
                                         variant="soft"
@@ -95,6 +110,7 @@ const ViewEmployee = () => {
                                     >
                                         Delete
                                     </Button>
+
 
                                 </Box>
                             </td>
