@@ -153,8 +153,10 @@ const ViewEmployee = () => {
                 </Table>
             </Sheet>
         </Box>
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Add Employee</DialogTitle>
+            <Dialog open={open} onClose={handleClose}  PaperProps={{
+                sx: { borderRadius: '30px' }
+            }}>
+                <DialogTitle sx={{fontWeight:'500'}} >Add Employee</DialogTitle>
                 <DialogContent>
                     <TextField
                         label="Name"
@@ -202,7 +204,7 @@ const ViewEmployee = () => {
                         onChange={handleInputChange}
                     />
                 </DialogContent>
-                <DialogActions>
+                <DialogActions sx={{display:'flex', justifyContent:'space-evenly', alignItems:'center',}}>
                     <Button onClick={handleClose} color="primary">Cancel</Button>
                     <Button onClick={handleClose} color="primary" variant="contained">Save</Button>
                 </DialogActions>
