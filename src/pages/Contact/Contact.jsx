@@ -9,9 +9,9 @@ import Button from '@mui/joy/Button';
 const Contact = () => {
     // Sample data for the table
     const [clients, setClients] = useState([
-        { id: 1, name: 'Alice', gender: 'Female', email: 'alice@example.com', phone: '123-456-7890' },
-        { id: 2, name: 'Bob', gender: 'Male', email: 'bob@example.com', phone: '234-567-8901' },
-        { id: 3, name: 'Charlie', gender: 'Male', email: 'charlie@example.com', phone: '345-678-9012' },
+        { id: 1, name: 'Alice', email: 'alice@example.com', phone: '123-456-7890', subject:'Please give me price list', },
+        { id: 2, name: 'Bob', email: 'bob@example.com', phone: '234-567-8901', subject:'Please give me WhatsApp number',  },
+        { id: 3, name: 'Charlie', email: 'charlie@example.com', phone: '345-678-9012', subject:'Please share you Outlet location',  },
     ]);
 
     // Function to handle deleting a client
@@ -65,10 +65,10 @@ const Contact = () => {
                 >
                     <thead>
                     <tr style={{ backgroundColor: '#212121' }}>
-                        <th style={{ color: '#ffffff',width: 200 }}>Name</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
+                        <th style={{ color: '#ffffff',width: 150 }}>Name</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Email</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
+                        <th style={{ color: '#ffffff',width: 120 }}>Phone</th>
+                        <th style={{ color: '#ffffff',width: 200 }}>Subject</th>
                         <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
 
                     </tr>
@@ -77,9 +77,9 @@ const Contact = () => {
                     {clients.map((client) => (
                         <tr key={client.id}>
                             <td>{client.name}</td>
-                            <td>{client.gender}</td>
                             <td>{client.email}</td>
                             <td>{client.phone}</td>
+                            <td>{client.subject}</td>
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
                                     <Button
