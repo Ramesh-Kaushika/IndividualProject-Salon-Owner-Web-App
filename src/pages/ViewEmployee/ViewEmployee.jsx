@@ -5,6 +5,7 @@ import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, IconButton } from '@mui/material';
 import ControlPointSharpIcon from '@mui/icons-material/ControlPointSharp';
+import CustomDialog from "../../components/CustomDialog/CustomDialog.jsx";
 
 
 
@@ -153,62 +154,19 @@ const ViewEmployee = () => {
                 </Table>
             </Sheet>
         </Box>
-            <Dialog open={open} onClose={handleClose}  PaperProps={{
-                sx: { borderRadius: '30px' }
-            }}>
-                <DialogTitle sx={{fontWeight:'500'}} >Add Employee</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        label="Name"
-                        variant="standard"
-                        fullWidth
-                        margin="dense"
-                        name="name"
-                        value={formValues.name}
-                        onChange={handleInputChange}
-                    />
-                    <TextField
-                        label="Position"
-                        variant="standard"
-                        fullWidth
-                        margin="dense"
-                        name="position"
-                        value={formValues.position}
-                        onChange={handleInputChange}
-                    />
-                    <TextField
-                        label="Email"
-                        variant="standard"
-                        fullWidth
-                        margin="dense"
-                        name="email"
-                        value={formValues.email}
-                        onChange={handleInputChange}
-                    />
-                    <TextField
-                        label="Phone"
-                        variant="standard"
-                        fullWidth
-                        margin="dense"
-                        name="phone"
-                        value={formValues.phone}
-                        onChange={handleInputChange}
-                    />
-                    <TextField
-                        label="Employee Salary"
-                        variant="standard"
-                        fullWidth
-                        margin="dense"
-                        name="employee_salary"
-                        value={formValues.employee_salary}
-                        onChange={handleInputChange}
-                    />
-                </DialogContent>
-                <DialogActions sx={{display:'flex', justifyContent:'space-evenly', alignItems:'center',}}>
-                    <Button onClick={handleClose} color="primary">Cancel</Button>
-                    <Button onClick={handleClose} color="primary" variant="contained">Save</Button>
-                </DialogActions>
-            </Dialog>
+            {/* Existing Table Component */}
+            {/* Reusable Dialog Component */}
+            <CustomDialog
+                open={open}
+                onClose={handleClose}
+                title="Add Employee"
+            >
+                <TextField label="Name" variant="standard" fullWidth margin="dense" name="name" value={formValues.name} onChange={handleInputChange} />
+                <TextField label="Position" variant="standard" fullWidth margin="dense" name="position" value={formValues.position} onChange={handleInputChange} />
+                <TextField label="Email" variant="standard" fullWidth margin="dense" name="email" value={formValues.email} onChange={handleInputChange} />
+                <TextField label="Phone" variant="standard" fullWidth margin="dense" name="phone" value={formValues.phone} onChange={handleInputChange} />
+                <TextField label="Employee Salary" variant="standard" fullWidth margin="dense" name="employee_salary" value={formValues.employee_salary} onChange={handleInputChange} />
+            </CustomDialog>
         </>
 
     );
