@@ -25,6 +25,8 @@ import NotificationAddSharpIcon from '@mui/icons-material/NotificationAddSharp';
 import AttachMoneySharpIcon from '@mui/icons-material/AttachMoneySharp';
 import AddIcCallSharpIcon from '@mui/icons-material/AddIcCallSharp';
 import ThumbUpOffAltSharpIcon from '@mui/icons-material/ThumbUpOffAltSharp';
+import {Button} from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const drawerWidth = 240;
@@ -98,6 +100,11 @@ const Drawer = styled(MuiDrawer, {shouldForwardProp: (prop) => prop !== 'open'})
 
 export default function Main() {
 
+    const logoutonclick = () => {
+        localStorage.removeItem('stToken')
+        window.location.reload();
+    }
+
     const getRoutes = (value) => value.map(
         (val) =>
             <Route key={val.key} path={val.path} element={val.component}/>
@@ -134,6 +141,9 @@ export default function Main() {
                     <Typography fontWeight={500} variant="h6" noWrap component="div">
                         ZenStyle Salon Dashboard
                     </Typography>
+                    <Button  onClick={()=> logoutonclick()} variant="contained" sx={{display:'flex', right:10,position:'absolute', backgroundColor: '#1e272e',color: 'balck', width:'13%'}} endIcon={<LogoutIcon />}>
+                        LOG OUT
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Drawer sx={{
