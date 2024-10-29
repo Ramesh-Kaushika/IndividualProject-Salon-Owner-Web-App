@@ -3,7 +3,7 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import { Button, TextField } from '@mui/material';
+import {Button, TableCell, TableRow, TextField} from '@mui/material';
 import ControlPointSharpIcon from '@mui/icons-material/ControlPointSharp';
 import CustomDialog from "../../components/CustomDialog/CustomDialog.jsx";
 
@@ -83,14 +83,14 @@ const ViewEmployee = () => {
                 <Sheet variant="outlined" sx={{ overflow: 'auto' }}>
                     <Table borderAxis="bothBetween" stripe="odd" hoverRow>
                         <thead>
-                        <tr style={{ backgroundColor: '#212121' }}>
-                            <th style={{  width: 200 }}>Name</th>
-                            <th style={{ color: '#ffffff', width: 200 }}>Position</th>
-                            <th style={{ color: '#ffffff', width: 200 }}>Email</th>
-                            <th style={{ color: '#ffffff', width: 200 }}>Phone</th>
-                            <th style={{ color: '#ffffff', width: 200 }}>Employee Salary</th>
-                            <th style={{ color: '#ffffff', width: 200 }}>Actions</th>
-                        </tr>
+                        <TableRow sx={{ backgroundColor: '#212121' }}>
+                            <TableCell sx={{ color: '#ffffff', width: 200 }}>Name</TableCell>
+                            <TableCell sx={{ color: '#ffffff', width: 200 }}>Position</TableCell>
+                            <TableCell sx={{ color: '#ffffff', width: 200 }}>Email</TableCell>
+                            <TableCell sx={{ color: '#ffffff', width: 200 }}>Phone</TableCell>
+                            <TableCell sx={{ color: '#ffffff', width: 200 }}>Employee Salary</TableCell>
+                            <TableCell sx={{ color: '#ffffff', width: 200 }}>Actions</TableCell>
+                        </TableRow>
                         </thead>
                         <tbody>
                         {clients.map((client) => (

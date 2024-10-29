@@ -92,6 +92,7 @@ const ClientBase = () => {
                                                 backgroundColor: 'red', // Hover color
                                             },
                                         }}
+                                        onClick={() => setClients(clients.filter((c) => c.id !== client.id))}
                                     >
                                         Delete
                                     </Button>
