@@ -3,11 +3,29 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import {Button} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, IconButton } from '@mui/material';
 import ControlPointSharpIcon from '@mui/icons-material/ControlPointSharp';
 
 
+
 const ViewEmployee = () => {
+
+    const [open, setOpen] = useState(false);
+    const [formValues, setFormValues] = useState({
+        name: '',
+        position: '',
+        email: '',
+        phone: '',
+        employee_salary: '',
+    });
+
+    const handleClickOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
+
     // Sample data for the table
     const [clients, setClients] = useState([
         { id: 1, name: 'Ramesh', position: 'Hair Specialist', email: 'alice@example.com', phone: '123-456-7890',employee_salary:'20000/=' },
@@ -21,15 +39,16 @@ const ViewEmployee = () => {
     };
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <>
+            <Box sx={{ width: '100%' }}>
             <Box sx={{display:'flex',
-                        justifyContent:'space-between',
-                        alignItems:'center',
+                justifyContent:'space-between',
+                alignItems:'center',
             }}>
                 <Typography level="body-sm" sx={{margin:'0 auto', textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
                     Employees Dashboard
                 </Typography>
-                <Button  onClick={()=> {}} variant="contained" sx={{
+                <Button onClick={handleClickOpen} variant="contained" sx={{
                     backgroundColor: 'red',
                     '&:hover': {
                         backgroundColor: '#009688', // Hover color
@@ -126,8 +145,6 @@ const ViewEmployee = () => {
                                     >
                                         Delete
                                     </Button>
-
-
                                 </Box>
                             </td>
                         </tr>
@@ -136,7 +153,61 @@ const ViewEmployee = () => {
                 </Table>
             </Sheet>
         </Box>
-
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Add Employee</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        label="Name"
+                        variant="standard"
+                        fullWidth
+                        margin="dense"
+                        name="name"
+                        value={formValues.name}
+                        onChange={handleInputChange}
+                    />
+                    <TextField
+                        label="Position"
+                        variant="standard"
+                        fullWidth
+                        margin="dense"
+                        name="position"
+                        value={formValues.position}
+                        onChange={handleInputChange}
+                    />
+                    <TextField
+                        label="Email"
+                        variant="standard"
+                        fullWidth
+                        margin="dense"
+                        name="email"
+                        value={formValues.email}
+                        onChange={handleInputChange}
+                    />
+                    <TextField
+                        label="Phone"
+                        variant="standard"
+                        fullWidth
+                        margin="dense"
+                        name="phone"
+                        value={formValues.phone}
+                        onChange={handleInputChange}
+                    />
+                    <TextField
+                        label="Employee Salary"
+                        variant="standard"
+                        fullWidth
+                        margin="dense"
+                        name="employee_salary"
+                        value={formValues.employee_salary}
+                        onChange={handleInputChange}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">Cancel</Button>
+                    <Button onClick={handleClose} color="primary" variant="contained">Save</Button>
+                </DialogActions>
+            </Dialog>
+        </>
 
     );
 };
