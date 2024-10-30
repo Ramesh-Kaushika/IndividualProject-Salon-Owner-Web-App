@@ -28,6 +28,7 @@ import ThumbUpOffAltSharpIcon from '@mui/icons-material/ThumbUpOffAltSharp';
 import {Button} from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
 import logo from '../../assets/ZENSTYLE.png';
+import GamilIcon from '../../assets/gmailicon.png';
 import DashboardSharpIcon from '@mui/icons-material/DashboardSharp';
 
 
@@ -145,7 +146,8 @@ export default function Main() {
                     <Typography fontWeight={500} variant="h6" noWrap component="div">
                         ZenStyle Salon Dashboard
                     </Typography>
-                    <Button  onClick={()=> logoutonclick()} variant="contained" sx={{display:'flex', right:10,position:'absolute', backgroundColor: '#1e272e',color: 'balck', width:'13%', borderRadius:10,}} endIcon={<LogoutIcon />}>
+                    <img src={GamilIcon} alt="GamilIcon" style={{ width: '3%', height: '3%',display:'flex', marginLeft:840, backgroundColor:'#f0f0f0', borderRadius:50, }} onClick={() => window.open("https://mail.google.com/mail/u/0/#inbox?compose=new")}/>
+                    <Button onClick={()=> logoutonclick()} variant="contained" sx={{display:'flex', right:10,position:'absolute', backgroundColor: '#1e272e',color: 'balck', width:'13%', borderRadius:10,}} endIcon={<LogoutIcon />}>
                         LOG OUT
                     </Button>
                 </Toolbar>
