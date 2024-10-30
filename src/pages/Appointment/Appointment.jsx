@@ -2,12 +2,25 @@ import React, {useState} from 'react';
 
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import Table from '@mui/joy/Table';
+
 import Box from '@mui/joy/Box';
-import {Button} from "@mui/material";
+import {Button, TableCell, TableRow, TextField,Table} from "@mui/material";
 import ControlPointSharpIcon from '@mui/icons-material/ControlPointSharp';
+import CustomDialog from "../../components/CustomDialog/CustomDialog.jsx";
 
 const Appointment = () => {
+
+    const [open, setOpen] = useState(false);
+    const [formValues, setFormValues] = useState({
+        name: '',
+        gender: '',
+        email: '',
+        phone: '',
+        date: '',
+        time: '',
+        status: '',
+        expert: '',
+    });
     // Sample data for the table
     const [clients, setClients] = useState([
         {
@@ -45,12 +58,42 @@ const Appointment = () => {
         },
     ]);
 
+    const handleClickOpen = () => {
+        setFormValues({ name: '',
+            gender: '',
+            email: '',
+            phone: '',
+            date: '',
+            time: '',
+            status: '',
+            expert: '',});
+        setOpen(true);
+    };
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setFormValues({...formValues, [name]: value});
+    };
+    const handleSave = () => {
+        // Add new client
+        const newClient = {...formValues, id: clients.length + 1};
+        setClients([...clients, newClient]);
+
+        handleClose();
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+        // setSelectedClient(null);
+    };
+
     // Function to handle deleting a client
     const deleteClient = (id) => {
         setClients(clients.filter((client) => client.id !== id));
     };
 
     return (
+
         <Box sx={{width: '100%'}}>
             <Box sx={{
                 display: 'flex',
@@ -61,31 +104,32 @@ const Appointment = () => {
                             sx={{margin: '0 auto', textAlign: 'center', pb: 2, fontWeight: '700', fontSize: 40,}}>
                     Appointments
                 </Typography>
-                <Button  onClick={()=> {}} variant="contained" sx={{
+                <Button onClick={() => handleClickOpen()} variant="contained" sx={{
                     backgroundColor: 'red',
                     '&:hover': {
                         backgroundColor: '#009688', // Hover color
                     },
-                    paddingY:1.2,
-                    borderRadius:20,
-                    color: 'white', width:'16%'}} endIcon={<ControlPointSharpIcon/>}>
+                    paddingY: 1.2,
+                    borderRadius: 20,
+                    color: 'white', width: '16%'
+                }} endIcon={<ControlPointSharpIcon/>}>
                     Add Appointments
                 </Button>
             </Box>
 
-                <Sheet
-                    variant="outlined"
-                    sx={(theme) => ({
-                        '--TableCell-height': '40px',
-                        // the number is the amount of the header rows.
-                        '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
-                        '--Table-firstColumnWidth': '80px',
-                        '--Table-lastColumnWidth': '144px',
-                        // background needs to have transparency to show the scrolling shadows
-                        '--TableRow-stripeBackground': 'rgba(0 0 0 / 0.04)',
-                        '--TableRow-hoverBackground': 'rgba(0 0 0 / 0.08)',
-                        overflow: 'auto',
-                        background: `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
+            <Sheet
+                variant="outlined"
+                sx={(theme) => ({
+                    '--TableCell-height': '40px',
+                    // the number is the amount of the header rows.
+                    '--TableHeader-height': 'calc(1 * var(--TableCell-height))',
+                    '--Table-firstColumnWidth': '80px',
+                    '--Table-lastColumnWidth': '144px',
+                    // background needs to have transparency to show the scrolling shadows
+                    '--TableRow-stripeBackground': 'rgba(0 0 0 / 0.04)',
+                    '--TableRow-hoverBackground': 'rgba(0 0 0 / 0.08)',
+                    overflow: 'auto',
+                    background: `linear-gradient(to right, ${theme.vars.palette.background.surface} 30%, rgba(255, 255, 255, 0)),
             linear-gradient(to right, rgba(255, 255, 255, 0), ${theme.vars.palette.background.surface} 70%) 0 100%,
             radial-gradient(
               farthest-side at 0 50%,
@@ -98,68 +142,95 @@ const Appointment = () => {
                 rgba(0, 0, 0, 0)
               )
               0 100%`,
-                        backgroundSize:
-                            '40px calc(100% - var(--TableCell-height)), 40px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height))',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundAttachment: 'local, local, scroll, scroll',
-                        backgroundPosition:
-                            'var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height), var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height)',
+                    backgroundSize:
+                        '40px calc(100% - var(--TableCell-height)), 40px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height)), 14px calc(100% - var(--TableCell-height))',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundAttachment: 'local, local, scroll, scroll',
+                    backgroundPosition:
+                        'var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height), var(--Table-firstColumnWidth) var(--TableCell-height), calc(100% - var(--Table-lastColumnWidth)) var(--TableCell-height)',
 
-                    })}
+                })}
+            >
+                <Table
+                    stripe="odd"
+                    hoverRow
                 >
-                    <Table
-                        borderAxis="bothBetween"
-                        stripe="odd"
-                        hoverRow
-                    >
-                        <thead>
-                        <tr style={{backgroundColor: '#212121'}}>
-                            <th style={{color: '#ffffff', width: 130}}>Name</th>
-                            <th style={{color: '#ffffff', width: 80}}>Gender</th>
-                            <th style={{color: '#ffffff', width: 180}}>Email</th>
-                            <th style={{color: '#ffffff', width: 130}}>Phone</th>
-                            <th style={{color: '#ffffff', width: 130}}>Date</th>
-                            <th style={{color: '#ffffff', width: 110}}>Time</th>
-                            <th style={{color: '#ffffff', width: 130}}>Status</th>
-                            <th style={{color: '#ffffff', width: 120}}>Expert</th>
-                            <th style={{color: '#ffffff', width: 100}}>Edite</th>
+                    <thead>
+                    <tr style={{backgroundColor: '#212121'}}>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 130}}>Name</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 80}}>Gender</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 180}}>Email</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 130}}>Phone</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 130}}>Date</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 110}}>Time</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 130}}>Status</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 120}}>Expert</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 100}}>Edite</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {clients.map((client,index) => (
+                        <TableRow key={client.id} sx={{ '&:hover': { backgroundColor: '#f5f5f5' },
+                            backgroundColor: index % 2 === 0 ? '#abebf2' : 'white', // Stripe effect
+                        }}>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black'}}>{client.name}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black'}}>{client.gender}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black'}}>{client.email}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black'}}>{client.phone}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black','&:hover': { backgroundColor: '#f0f0f0'},backgroundColor: '#ffe5f3'}}>Rs.{client.date}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black','&:hover': { backgroundColor: '#f0f0f0'},backgroundColor: '#ffe5f3'}}>Rs.{client.time}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black'}}>Rs.{client.status}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black'}}>Rs.{client.expert}</TableCell>
+                            <TableCell sx={{border: '0.5px solid #ddd',borderColor:'black'}}>
+                                <Box sx={{display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                    <Button
+                                        size="small"
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={() => setClients(clients.filter((c) => c.id !== client.id))}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Box>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                    </tbody>
+                </Table>
+            </Sheet>
+            {/* Reusable Dialog Component */}
+            <CustomDialog
+                open={open}
+                onClose={handleClose}
+                title={'Add Appointment'}
+                actions={
+                    <>
+                        <Button onClick={handleClose} color="primary">Cancel</Button>
+                        <Button onClick={handleSave} color="primary" variant="contained">Save</Button>
+                    </>
+                }
+            >
+                <TextField label="Name" variant="standard" fullWidth margin="dense" name="name" value={formValues.name}
+                           onChange={handleInputChange}/>
+                <TextField label="Gender" variant="standard" fullWidth margin="dense" name="gender"
+                           value={formValues.gender} onChange={handleInputChange}/>
+                <TextField label="Email" variant="standard" fullWidth margin="dense" name="email"
+                           value={formValues.email} onChange={handleInputChange}/>
+                <TextField label="Phone" variant="standard" fullWidth margin="dense" name="phone"
+                           value={formValues.phone} onChange={handleInputChange}/>
+                <TextField label="Date" variant="standard" fullWidth margin="dense" name="date"
+                           value={formValues.date} onChange={handleInputChange}/>
+                <TextField label="Time" variant="standard" fullWidth margin="dense" name="time"
+                           value={formValues.time} onChange={handleInputChange}/>
+                <TextField label="Status" variant="standard" fullWidth margin="dense" name="status"
+                           value={formValues.status} onChange={handleInputChange}/>
+                <TextField label="Expert" variant="standard" fullWidth margin="dense" name="expert"
+                           value={formValues.expert} onChange={handleInputChange}/>
+            </CustomDialog>
+        </Box>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {clients.map((client) => (
-                            <tr key={client.id}>
-                                <td>{client.name}</td>
-                                <td>{client.gender}</td>
-                                <td>{client.email}</td>
-                                <td>{client.phone}</td>
-                                <td style={{backgroundColor: '#ffe5f3'}}>{client.date}</td>
-                                <td style={{backgroundColor: '#ffe5f3'}}>{client.time}</td>
-                                <td>{client.status}</td>
-                                <td>{client.expert}</td>
-                                <td>
-                                    <Box sx={{display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center'}}>
-                                        <Button
-                                            size="small"
-                                            variant="contained"
-                                            color="secondary"
-                                            onClick={() => setClients(clients.filter((c) => c.id !== client.id))}
-                                        >
-                                            Delete
-                                        </Button>
 
-                                    </Box>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </Table>
-                </Sheet>
-            </Box>
+    );
+};
 
-
-            );
-            };
-
-            export default Appointment;
-
+export default Appointment;
