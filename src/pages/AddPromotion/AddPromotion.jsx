@@ -4,17 +4,49 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import ControlPointSharpIcon from '@mui/icons-material/ControlPointSharp';
+import CustomDialog from "../../components/CustomDialog/CustomDialog.jsx";
 
 const AddPromotion = () => {
+    const [open, setOpen] = useState(false);
+    const [formValues, setFormValues] = useState({
+        title: '',
+        description: '',
+        startDate: '',
+        endDate: '',
+        discount: '',
+    });
     // Sample data for the table
     const [clients, setClients] = useState([
         { id: 1, title: 'Hair Cutting', description: 'Male & Female', startDate: '2024.10.10', endDate: '2024.10.30', discount:'70%', },
         { id: 2, title: 'Makeup', description: 'With Facial', startDate: '2024.11.10', endDate: '2024.11.20',  discount:'50%', },
         { id: 3, title: 'Dressing', description: 'Male & Female', startDate: '2024.12.10', endDate: '2024.12.29',  discount:'20%', },
     ]);
+    const handleClickOpen = () => {
+        setFormValues({
+            title: '',
+            description: '',
+            startDate: '',
+            endDate: '',
+            discount: '',});
+        setOpen(true);
+    };
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setFormValues({...formValues, [name]: value});
+    };
+    const handleSave = () => {
+        // Add new client
+        const newClient = {...formValues, id: clients.length + 1};
+        setClients([...clients, newClient]);
 
+        handleClose();
+    };
+    const handleClose = () => {
+        setOpen(false);
+        // setSelectedClient(null);
+    };
     // Function to handle deleting a client
     const deleteClient = (id) => {
         setClients(clients.filter((client) => client.id !== id));
@@ -29,7 +61,7 @@ const AddPromotion = () => {
                 <Typography level="body-sm" sx={{margin:'0 auto', textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
                     Promotions
                 </Typography>
-                <Button  onClick={()=> {}} variant="contained" sx={{
+                <Button  onClick={() => handleClickOpen()} variant="contained" sx={{
                     backgroundColor: 'red',
                     '&:hover': {
                         backgroundColor: '#009688', // Hover color
@@ -87,7 +119,7 @@ const AddPromotion = () => {
                         <th style={{ color: '#ffffff',width: 200 }}>StartDate</th>
                         <th style={{ color: '#ffffff',width: 200 }}>EndDate</th>
                         <th style={{ color: '#ffffff',width: 80 ,}}>Discount</th>
-                        <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
+                        <th style={{ color: '#ffffff',width: 100, textAlign:'center' }}>Edite</th>
 
                     </tr>
                     </thead>
@@ -98,7 +130,7 @@ const AddPromotion = () => {
                             <td>{client.description}</td>
                             <td style={{ backgroundColor: '#ffe5f3' }}>{client.startDate}</td>
                             <td style={{ backgroundColor: '#ffe5f3' }}>{client.endDate}</td>
-                            <td  style={{  textAlign:'center'}}>{client.discount}</td>
+                            <td style={{ textAlign:'center', fontWeight:'700', fontSize: 16}}>{client.discount}</td>
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
                                     <Button
@@ -116,6 +148,29 @@ const AddPromotion = () => {
                     </tbody>
                 </Table>
             </Sheet>
+            {/* Reusable Dialog Component */}
+            <CustomDialog
+                open={open}
+                onClose={handleClose}
+                title={'Add Promotion'}
+                actions={
+                    <>
+                        <Button onClick={handleClose} color="primary">Cancel</Button>
+                        <Button onClick={handleSave} color="primary" variant="contained">Save</Button>
+                    </>
+                }
+            >
+                <TextField label="Title" variant="standard" fullWidth margin="dense" name="title" value={formValues.title}
+                           onChange={handleInputChange}/>
+                <TextField label="Description" variant="standard" fullWidth margin="dense" name="description"
+                           value={formValues.description} onChange={handleInputChange}/>
+                <TextField label="StartDate" variant="standard" fullWidth margin="dense" name="startDate"
+                           value={formValues.startDate} onChange={handleInputChange}/>
+                <TextField label="EndDate" variant="standard" fullWidth margin="dense" name="endDate"
+                           value={formValues.endDate} onChange={handleInputChange}/>
+                <TextField label="Discount" variant="standard" fullWidth margin="dense" name="discount"
+                           value={formValues.discount} onChange={handleInputChange}/>
+            </CustomDialog>
         </Box>
 
 
@@ -123,5 +178,3 @@ const AddPromotion = () => {
 };
 
 export default AddPromotion;
-
-

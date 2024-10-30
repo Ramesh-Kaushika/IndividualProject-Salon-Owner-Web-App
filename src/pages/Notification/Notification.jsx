@@ -116,7 +116,7 @@ const Notification = () => {
                     <tr style={{ backgroundColor: '#212121' }}>
                         <th style={{ color: '#ffffff',width: 200 }}>Date</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Message</th>
-                        <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
+                        <th style={{ color: '#ffffff',width: 100, textAlign:'center' }}>Edite</th>
 
                     </tr>
                     </thead>

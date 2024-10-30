@@ -165,7 +165,7 @@ const Appointment = () => {
                         <th style={{fontWeight:'500',color: '#ffffff', width: 110}}>Time</th>
                         <th style={{fontWeight:'500',color: '#ffffff', width: 130}}>Status</th>
                         <th style={{fontWeight:'500',color: '#ffffff', width: 120}}>Expert</th>
-                        <th style={{fontWeight:'500',color: '#ffffff', width: 100}}>Edite</th>
+                        <th style={{fontWeight:'500',color: '#ffffff', width: 100,}}>Edite</th>
                     </tr>
                     </thead>
                     <tbody>

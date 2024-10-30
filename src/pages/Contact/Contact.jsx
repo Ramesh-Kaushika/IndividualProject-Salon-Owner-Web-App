@@ -68,7 +68,7 @@ const Contact = () => {
                         <th style={{ color: '#ffffff',width: 200 }}>Email</th>
                         <th style={{ color: '#ffffff',width: 120 }}>Phone</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Subject</th>
-                        <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
+                        <th style={{ color: '#ffffff',width: 100 , textAlign:'center'}}>Edite</th>
 
                     </tr>
                     </thead>

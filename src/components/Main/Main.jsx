@@ -28,6 +28,7 @@ import ThumbUpOffAltSharpIcon from '@mui/icons-material/ThumbUpOffAltSharp';
 import {Button} from "@mui/material";
 import LogoutIcon from '@mui/icons-material/Logout';
 import logo from '../../assets/ZENSTYLE.png';
+import DashboardSharpIcon from '@mui/icons-material/DashboardSharp';
 
 
 const drawerWidth = 240;
@@ -211,13 +212,14 @@ export default function Main() {
                                             justifyContent: 'center',
                                         }}
                                     >
-                                        {index === 0 && <GroupIcon/>}
-                                        {index === 1 && <BadgeIcon/>}
-                                        {index === 2 && <LocalLibrarySharpIcon/>}
-                                        {index === 3 && <NotificationAddSharpIcon/>}
-                                        {index === 4 && <AttachMoneySharpIcon/>}
-                                        {index === 5 && <AddIcCallSharpIcon/>}
-                                        {index === 6 && <ThumbUpOffAltSharpIcon/>}
+                                        {index === 0 && <DashboardSharpIcon/>}
+                                        {index === 1 && <GroupIcon/>}
+                                        {index === 2 && <BadgeIcon/>}
+                                        {index === 3 && <LocalLibrarySharpIcon/>}
+                                        {index === 4 && <NotificationAddSharpIcon/>}
+                                        {index === 5 && <AttachMoneySharpIcon/>}
+                                        {index === 6 && <AddIcCallSharpIcon/>}
+                                        {index === 7 && <ThumbUpOffAltSharpIcon/>}
                                     </ListItemIcon>
                                     <ListItemText primary={val.key} sx={{opacity: open ? 1 : 0}}/>
                                 </ListItemButton>
@@ -234,7 +236,7 @@ export default function Main() {
                         {getRoutes(routes)}
                         {/*<Route path={'/main/*'} element={<Navigate to={'/main/add-promotion'}/>}/>*/}
                         {/*<Route path={'/main/*'} element={<Main/>}/>*/}
-                        <Route path={'*'} element={<Navigate to={'/client-base'}/>}/>
+                        <Route path={'*'} element={<Navigate to={'/dashboard'}/>}/>
                     </Routes>
                 </Box>
             </Box>

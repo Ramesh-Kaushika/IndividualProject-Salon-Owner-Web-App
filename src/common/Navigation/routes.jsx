@@ -5,9 +5,16 @@ import ClientBase from "../../pages/ClientBase/ClientBase.jsx";
 import FeedBack from "../../pages/FeedBack/FeedBack.jsx";
 import Appointment from "../../pages/Appointment/Appointment.jsx";
 import Notification from "../../pages/Notification/Notification.jsx";
+import Dashboard from "../../pages/Dashboard/Dashboard.jsx";
 
 
 const routes = [
+    {
+        name:"Dashboard",
+        key:"Dashboard",
+        path:"/dashboard",
+        component:<Dashboard/>
+    },
     {
         name:"Client Base",
         key:"Client Base",

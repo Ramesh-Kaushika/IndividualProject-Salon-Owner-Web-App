@@ -68,7 +68,7 @@ const FeedBack = () => {
                         <th style={{ color: '#ffffff',width: 200 }}>Date</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Comment</th>
                         <th style={{ color: '#ffffff',width: 200 }}>Rating</th>
-                        <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
+                        <th style={{ color: '#ffffff',width: 100, textAlign:'center'}}>Edite</th>
 
                     </tr>
                     </thead>
