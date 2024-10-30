@@ -145,7 +145,7 @@ export default function Main() {
                     <Typography fontWeight={500} variant="h6" noWrap component="div">
                         ZenStyle Salon Dashboard
                     </Typography>
-                    <Button  onClick={()=> logoutonclick()} variant="contained" sx={{display:'flex', right:10,position:'absolute', backgroundColor: '#1e272e',color: 'balck', width:'13%',}} endIcon={<LogoutIcon />}>
+                    <Button  onClick={()=> logoutonclick()} variant="contained" sx={{display:'flex', right:10,position:'absolute', backgroundColor: '#1e272e',color: 'balck', width:'13%', borderRadius:10,}} endIcon={<LogoutIcon />}>
                         LOG OUT
                     </Button>
                 </Toolbar>
