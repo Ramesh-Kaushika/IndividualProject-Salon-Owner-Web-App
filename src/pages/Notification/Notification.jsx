@@ -3,18 +3,50 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import {Button} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
+import CustomDialog from "../../components/CustomDialog/CustomDialog.jsx";
 
 
 
 const Notification = () => {
+    const [open, setOpen] = useState(false);
+    const [formValues, setFormValues] = useState({
+        date: '',
+        message: '',
+
+    });
     // Sample data for the table
     const [clients, setClients] = useState([
         { id: 1, date: '2024.10.10', message: 'Christmas Event', },
         { id: 2, date: '2025.04.10', message: 'Avurudu Season',  },
         { id: 3, date: '2024.11.11', message: 'Black Friday Night', },
     ]);
+
+    const handleClickOpen = () => {
+        setFormValues({
+            date: '',
+            message: '',
+           });
+        setOpen(true);
+    };
+
+    const handleInputChange = (e) => {
+        const {name, value} = e.target;
+        setFormValues({...formValues, [name]: value});
+    };
+
+    const handleSave = () => {
+        // Add new client
+        const newClient = {...formValues, id: clients.length + 1};
+        setClients([...clients, newClient]);
+
+        handleClose();
+    };
+    const handleClose = () => {
+        setOpen(false);
+        // setSelectedClient(null);
+    };
 
     // Function to handle deleting a client
     const deleteClient = (id) => {
@@ -30,7 +62,7 @@ const Notification = () => {
                 <Typography level="body-sm" sx={{margin:'0 auto', textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
                 Notifications
                 </Typography>
-                <Button  onClick={()=> {}} variant="contained" sx={{
+                <Button  onClick={() => handleClickOpen()} variant="contained" sx={{
                     backgroundColor: 'red',
                     '&:hover': {
                         backgroundColor: '#009688', // Hover color
@@ -111,6 +143,20 @@ const Notification = () => {
                     </tbody>
                 </Table>
             </Sheet>
+            <CustomDialog
+                open={open}
+                onClose={handleClose}
+                title={'Sent Notification'}
+                actions={
+                    <>
+                        <Button onClick={handleClose} color="primary">Cancel</Button>
+                        <Button onClick={handleSave} color="primary" variant="contained">Save</Button>
+                    </>
+                }
+            >
+                <TextField label="Date" variant="standard" fullWidth margin="dense" name="date" value={formValues.date} onChange={handleInputChange} />
+                <TextField label="Message" variant="standard" fullWidth margin="dense" name="message" value={formValues.message} onChange={handleInputChange} />
+            </CustomDialog>
         </Box>
 
 
