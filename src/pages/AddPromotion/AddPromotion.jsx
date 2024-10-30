@@ -102,19 +102,13 @@ const AddPromotion = () => {
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
                                     <Button
-                                        size="sm"
-                                        variant="soft"
-                                        sx={{
-                                            color: 'white',
-                                            backgroundColor: 'darkred',
-                                            '&:hover': {
-                                                backgroundColor: 'red', // Hover color
-                                            },
-                                        }}
+                                        size="small"
+                                        variant="contained"
+                                        color="secondary"
+                                        onClick={() => setClients(clients.filter((c) => c.id !== client.id))}
                                     >
                                         Delete
                                     </Button>
-
                                 </Box>
                             </td>
                         </tr>

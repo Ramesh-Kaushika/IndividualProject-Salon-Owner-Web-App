@@ -4,7 +4,7 @@ import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
+import {Button} from "@mui/material";
 
 const ClientBase = () => {
     // Sample data for the table
@@ -83,15 +83,9 @@ const ClientBase = () => {
                             <td>
                                 <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
                                     <Button
-                                        size="sm"
-                                        variant="soft"
-                                        sx={{
-                                            color: 'white',
-                                            backgroundColor: 'darkred',
-                                            '&:hover': {
-                                                backgroundColor: 'red', // Hover color
-                                            },
-                                        }}
+                                        size="small"
+                                        variant="contained"
+                                        color="secondary"
                                         onClick={() => setClients(clients.filter((c) => c.id !== client.id))}
                                     >
                                         Delete
