@@ -10,11 +10,11 @@ import CustomDialog from "../../components/CustomDialog/CustomDialog.jsx";
 
 
 const Notification = () => {
+    const [currentDate, setCurrentDate] = useState('');
     const [open, setOpen] = useState(false);
     const [formValues, setFormValues] = useState({
-        date: '',
         message: '',
-
+        date:'',
     });
     // Sample data for the table
     const [clients, setClients] = useState([
@@ -24,9 +24,12 @@ const Notification = () => {
     ]);
 
     const handleClickOpen = () => {
+        // Get the current date and time
+        const date = new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString();
+        setCurrentDate(date);
         setFormValues({
-            date: '',
             message: '',
+            date:date,
            });
         setOpen(true);
     };
@@ -69,7 +72,7 @@ const Notification = () => {
                     },
                     paddingY:1.2,
                     borderRadius:20,
-                    color: 'white', width:'16%'}} endIcon={<SendIcon/>}>
+                    color: 'white', width:'18%'}} endIcon={<SendIcon/>}>
                     Add Notifications
                 </Button>
             </Box>
@@ -147,6 +150,7 @@ const Notification = () => {
                 open={open}
                 onClose={handleClose}
                 title={'Sent Notification'}
+                subTitle={currentDate}
                 actions={
                     <>
                         <Button onClick={handleClose} color="primary">Cancel</Button>
@@ -154,7 +158,6 @@ const Notification = () => {
                     </>
                 }
             >
-                <TextField label="Date" variant="standard" fullWidth margin="dense" name="date" value={formValues.date} onChange={handleInputChange} />
                 <TextField label="Message" variant="standard" fullWidth margin="dense" name="message" value={formValues.message} onChange={handleInputChange} />
             </CustomDialog>
         </Box>

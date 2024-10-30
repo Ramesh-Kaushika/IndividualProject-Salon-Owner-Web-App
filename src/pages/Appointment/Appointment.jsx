@@ -111,7 +111,7 @@ const Appointment = () => {
                     },
                     paddingY: 1.2,
                     borderRadius: 20,
-                    color: 'white', width: '16%'
+                    color: 'white', width: '18%'
                 }} endIcon={<ControlPointSharpIcon/>}>
                     Add Appointments
                 </Button>

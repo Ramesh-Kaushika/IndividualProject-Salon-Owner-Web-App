@@ -75,7 +75,7 @@ const ViewEmployee = () => {
                     <Typography level="body-sm" sx={{ margin: '0 auto', textAlign: 'center', pb: 2, fontWeight: '700', fontSize: 40 }}>
                         Employees Dashboard
                     </Typography>
-                    <Button onClick={() => handleClickOpen()} variant="contained" sx={{ backgroundColor: 'red', '&:hover': { backgroundColor: '#009688' }, paddingY: 1.2, borderRadius: 20, color: 'white', width: '15%' }} endIcon={<ControlPointSharpIcon />}>
+                    <Button onClick={() => handleClickOpen()} variant="contained" sx={{ backgroundColor: 'red', '&:hover': { backgroundColor: '#009688' }, paddingY: 1.2, borderRadius: 20, color: 'white', width: '16%' }} endIcon={<ControlPointSharpIcon />}>
                         Add Employees
                     </Button>
                 </Box>
