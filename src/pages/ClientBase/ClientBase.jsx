@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
 import {Button} from "@mui/material";
+import instance from "../../services/Axios/AxiosOrder.jsx";
 
 const ClientBase = () => {
-    // Sample data for the table
-    const [clients, setClients] = useState([
-        { id: 1, name: 'Alice', gender: 'Female', email: 'alice@example.com', phone: '123-456-7890' },
-        { id: 2, name: 'Bob', gender: 'Male', email: 'bob@example.com', phone: '234-567-8901' },
-        { id: 3, name: 'Charlie', gender: 'Male', email: 'charlie@example.com', phone: '345-678-9012' },
-    ]);
+// Sample data for the table
+    const [clients, setClients] = useState([]);
+    useEffect(() => {
+        // GET request for remote image in node.js
+        instance.get('/api/v1/customer')
+            .then(function (response)  {
+                console.log(response.data)
+                setClients(response.data);
+            })
+            .catch((error) => {
+            console.error('Error fetching clients:', error);
+        });
+    }, []);
+
 
     // Function to handle deleting a client
     const deleteClient = (id) => {
@@ -20,9 +29,9 @@ const ClientBase = () => {
     };
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Typography level="body-sm" sx={{ textAlign: 'center', pb: 2, fontWeight:'700', fontSize:40, }}>
-                 Client Base
+        <Box sx={{width: '100%'}}>
+            <Typography level="body-sm" sx={{textAlign: 'center', pb: 2, fontWeight: '700', fontSize: 40,}}>
+                Client Base
             </Typography>
             <Sheet
                 variant="outlined"
@@ -64,24 +73,24 @@ const ClientBase = () => {
                     hoverRow
                 >
                     <thead>
-                    <tr style={{ backgroundColor: '#212121' }}>
-                        <th style={{ color: '#ffffff',width: 200 }}>Name</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Gender</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Email</th>
-                        <th style={{ color: '#ffffff',width: 200 }}>Phone</th>
-                        <th style={{ color: '#ffffff',width: 100 }}>Edite</th>
+                    <tr style={{backgroundColor: '#212121'}}>
+                        <th style={{color: '#ffffff', width: 200}}>Name</th>
+                        <th style={{color: '#ffffff', width: 200}}>Gender</th>
+                        <th style={{color: '#ffffff', width: 200}}>Email</th>
+                        <th style={{color: '#ffffff', width: 200}}>Phone</th>
+                        <th style={{color: '#ffffff', width: 100}}>Edite</th>
 
                     </tr>
                     </thead>
                     <tbody>
                     {clients.map((client) => (
-                        <tr key={client.id}>
-                            <td>{client.name}</td>
+                        <tr key={client.customerId}>
+                            <td>{client.customerName}</td>
                             <td>{client.gender}</td>
                             <td>{client.email}</td>
-                            <td>{client.phone}</td>
+                            <td>{client.phoneNumber}</td>
                             <td>
-                                <Box sx={{ display: 'flex', gap: 1 , justifyContent: 'center', alignItems: 'center'  }}>
+                                <Box sx={{display: 'flex', gap: 1, justifyContent: 'center', alignItems: 'center'}}>
                                     <Button
                                         size="small"
                                         variant="contained"
