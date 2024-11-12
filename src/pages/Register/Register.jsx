@@ -98,7 +98,6 @@ const Register = () => {
                         }
                     />
                 </FormControl>
-
                 <Divider sx={{ width: '100%', marginY: 2 }} />
                 <Link to={'/login'}>
                     <Button onClick={() => loginHandleClick()} sx={{backgroundColor: '#212121', width: '35ch', textTransform: 'none', }} variant="contained">Sign Up</Button>
