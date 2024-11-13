@@ -6,21 +6,21 @@ import Table from '@mui/joy/Table';
 import Box from '@mui/joy/Box';
 import {Button} from "@mui/material";
 import instance from "../../services/Axios/AxiosOrder.jsx";
+import {useQuery} from "react-query";
 
 const ClientBase = () => {
 // Sample data for the table
-    const [clients, setClients] = useState([]);
-    useEffect(() => {
-        // GET request for remote image in node.js
-        instance.get('/api/v1/customer')
-            .then(function (response)  {
-                console.log(response.data)
-                setClients(response.data);
-            })
-            .catch((error) => {
-            console.error('Error fetching clients:', error);
-        });
-    }, []);
+    // Use `useQuery` with polling to auto-update data
+    const { data: clients, isLoading, error } = useQuery(
+        'fetchClients', // unique query key
+        () => instance.get('/api/v1/customer').then((res) => res.data),
+        {
+            refetchInterval: 1000, // Fetch data every 5 seconds
+        }
+    );
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error loading clients: {error.message}</div>;
 
 
     // Function to handle deleting a client
