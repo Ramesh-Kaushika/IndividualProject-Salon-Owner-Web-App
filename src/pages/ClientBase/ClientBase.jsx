@@ -23,7 +23,7 @@ const ClientBase = () => {
     if (error) return <div>Error loading clients: {error.message}</div>;
 
 
-    // Function to handle deleting a client12345678910111213
+    // Function to handle deleting a client
     const deleteClient = (id) => {
         setClients(clients.filter((client) => client.id !== id));
     };
